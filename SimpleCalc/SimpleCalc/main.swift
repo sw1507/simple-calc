@@ -10,22 +10,41 @@ import Foundation
 
 print("Enter an expression separated by returns:")
 let userInput = readLine(strippingNewline: true)!
+
 var userInputArray = userInput.characters.split(separator: " ").map(String.init)
 var userInputConvertToNumbers:[Int] = []
+
 for i in 0 ... userInputArray.count - 2{
     let newNumber = Int(userInputArray[i])
     userInputConvertToNumbers.append(newNumber!)
 }
+
 if (userInput.contains("count")){
-    let count = userInputConvertToNumbers.count - 1
+    let count = userInputConvertToNumbers.count
     print("Result: \(count)")
 }else if userInput.contains("avg"){
+    var sum = 0
     for number in userInputConvertToNumbers{
-        
+        sum += number;
+    }
+    let avg = sum/(userInputConvertToNumbers.count)
+    print("Result: \(avg)")
+}else if userInput.contains("fact"){
+    if(userInputConvertToNumbers.count>1){
+        print("Only 1 number should be entered for calculating factorial!")
+    }else{
+        let givenNumber = userInputConvertToNumbers[0];
+        var factResult = givenNumber;
+        if(givenNumber == 1 || givenNumber == 0){
+            print("Result: \(1)")
+        }else{
+            for i in (1...givenNumber-1) {
+                factResult *= i
+            }
+            print("Result: \(factResult)")
+        }
         
     }
-    
-}else if userInput.contains("fact"){
     
     
 }else{
